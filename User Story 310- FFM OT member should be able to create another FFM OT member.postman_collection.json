@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "cee9dbad-38a9-4139-89f1-58069a0ee956",
+		"name": "User Story 310: FFM OT member should be able to create another FFM OT member",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Positive",
+			"item": [
+				{
+					"name": "Create FFM platform administrative user Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successfully registered user\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/field-force/auth/register-admin-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-admin-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative",
+			"item": [
+				{
+					"name": "Create FFM platform administrative user Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"user@example.com\",\"password\":\"string\",\"firstname\":\"string\",\"lastname\":\"string\",\"username\":\"string\"}"
+						},
+						"url": {
+							"raw": "http://137.184.134.215:5001/api/v1/field-force/auth/register-admin-user",
+							"protocol": "http",
+							"host": [
+								"137",
+								"184",
+								"134",
+								"215"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-admin-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
